@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Products from "./ProductCard";
 import axios from "axios";
+import { Flex } from "@chakra-ui/react";
 
 type productDataProps = {
   title: string;
@@ -26,6 +27,7 @@ const Homepage = () => {
 
   return (
     <>
+    <Flex flexWrap='wrap' justifyContent='center'>
       {products.map(
         ({ title, description, image, price, rating: { rate } }, key) => (
           <Products
@@ -37,8 +39,9 @@ const Homepage = () => {
           />
         )
       )}
+      </Flex>
     </>
-  );
+  )
 };
 
 export default Homepage;

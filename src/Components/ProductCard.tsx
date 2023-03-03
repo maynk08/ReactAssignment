@@ -40,21 +40,21 @@ const Products = ({
 
   return (
     <>
-      <Card w="310px" mt="30px" boxShadow="1px 1px 1px 0px grey">
+      <Card w="310px" m="20px" boxShadow="1px 1px 1px 0px grey" h='390px'>
         <CardBody>
           <Image
             src={image}
             mx="auto"
             alt="product image"
             borderRadius="lg"
-            h="100px"
-            objectFit="contain"
+            objectFit= "contain"
             boxSize="200px"
-            maxH="300px"
+            maxH="150px"
+            mb='-34px'
             objectPosition="center"
           />
-          <Stack mt="50px" spacing="5px">
-            <Heading size="md">{title}</Heading>
+          <Stack mt="50px" spacing="1px">
+            <Heading size="sm">{title}</Heading>
             <Text>{description}</Text>
             <HStack>
               {Array.from({ length: filledStars }, (_, index) => (
@@ -71,7 +71,7 @@ const Products = ({
             </Text>
           </Stack>
         </CardBody>
-        <Divider />
+        <Divider mt='-5px' />
         <CardFooter>
           <ButtonGroup spacing="10px">
             <Button variant="solid" size="md">
