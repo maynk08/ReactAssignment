@@ -1,4 +1,7 @@
 import React from "react";
+import {useEffect,useState} from 'react'
+import { useNavigate } from "react-router-dom";
+import { initialStateTypes } from "../Redux/reducers/checkLogin";
 import { AiOutlineHeart, AiFillStar, AiOutlineStar } from "react-icons/ai";
 import {
   HStack,
@@ -14,34 +17,69 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 
+import { useDispatch,useSelector } from "react-redux";
 
-type productCardProps = {
+
+
+export interface productCardProps {
+  id:number,
   title: string;
   description: string;
   price: string;
   image: string;
   rating: number;
+  btnText : string;
+  btnSpace:string;
+  btnVariant:string,
+  clrScheme:string,
+  handleClick: () => void
 };
 
+
 const Products = ({
+  id,
   title,
   description,
   price,
   image,
   rating,
+  btnText,
+  btnSpace,
+  btnVariant,
+  clrScheme,
+  handleClick
 }: productCardProps) => {
-  title = title.length > 15 ? title.substring(0, 15) + "..." : title;
-  description =
-    description.length > 50
-      ? description.substring(0, 50) + "..."
-      : description;
+
+
+ 
+      
   const filledStars = Math.floor(rating);
   const hasHalfStar = rating - filledStars >= 0.5;
+ // const dispatch = useDispatch()
+ // const cartItem = useSelector((state:initialStateTypes['cart'])=>state)
+  const navigate = useNavigate()
+ //console.log(cartItem)
+
+
+
+const showDetail = () => {
+   const data = {title,description,price,image,rating}
+   navigate('/product',{state:data})
+}
+
+// title = title.length > 15 ? title.substring(0, 15) + "..." : title;
+// description =
+//   description.length > 50
+//     ? description.substring(0, 50) + "..."
+//     : description;
+
+
+ 
 
   return (
     <>
       <Card w="310px" m="20px" boxShadow="1px 1px 1px 0px grey" h='390px'>
-        <CardBody>
+        <CardBody  onClick={showDetail}>
           <Image
             src={image}
             mx="auto"
@@ -54,8 +92,8 @@ const Products = ({
             objectPosition="center"
           />
           <Stack mt="50px" spacing="1px">
-            <Heading size="sm">{title}</Heading>
-            <Text>{description}</Text>
+            <Heading size="sm">{title.substring(0,15)+"..."}</Heading>
+            <Text>{description.substring(0,50)+"..."}</Text>
             <HStack>
               {Array.from({ length: filledStars }, (_, index) => (
                 <AiFillStar key={index} color="orange" />
@@ -73,15 +111,15 @@ const Products = ({
         </CardBody>
         <Divider mt='-5px' />
         <CardFooter>
-          <ButtonGroup spacing="10px">
+          <ButtonGroup spacing={btnSpace}>
             <Button variant="solid" size="md">
               {<AiOutlineHeart />}
             </Button>
             <Button variant="solid" colorScheme="blue">
               Buy now
             </Button>
-            <Button variant="outline" colorScheme="blue">
-              Add to cart
+            <Button variant={btnVariant} colorScheme={clrScheme} onClick={handleClick} >
+              {btnText}
             </Button>
           </ButtonGroup>
         </CardFooter>

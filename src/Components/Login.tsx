@@ -13,7 +13,8 @@ import {
 import { useToast } from '@chakra-ui/react'
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
-import SignUp from "../Components/SignUp";
+import { useSelector,useDispatch } from 'react-redux/es/exports';
+import { setCart , regStatus } from "../Redux/actions/actions";
 import { useState,useEffect } from "react";
 
 
@@ -37,13 +38,23 @@ const validateForm = Yup.object().shape({
 
 
 const Login = () => {
-  const [isRegistered, setIsReg] = useState(true);
+
+  interface actionTypes {
+    regStatus : boolean
+  }
+
+  // let loginState:any = useSelector((state:actionTypes)=>{
+  //   //console.log(state.changeRegStatus)
+  //   return state.regStatus
+  // })
+ 
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const toast = useToast()
 
-  useEffect(()=> {
-    localStorage.setItem('userReg',JSON.stringify(isRegistered))
-  },[isRegistered])
+  // useEffect(()=> {
+  //   localStorage.setItem('userReg',JSON.stringify(isRegistered))
+  // },[isRegistered])
 
   const handleSubmit = (values: formData) => {
   
@@ -52,14 +63,14 @@ const Login = () => {
     
     if(data.email === email && data.password === password) {
       toast({
-        title: "Logged in successfully !",
+        title: "success !",
         status: "success",
         duration: 5000,
         isClosable: true,
-        position: "bottom",
+        position: "top",
       });
       navigate('/home')
-          console.log('Login Successful')
+          console.log('Login Successfull')
     }
   
     else {
@@ -80,7 +91,7 @@ const Login = () => {
     
   return (
     <>
-      {isRegistered ? (
+      {/* {isRegistered ? ( */}
         <Box
           w="35%"
           mt="80px"
@@ -154,14 +165,14 @@ const Login = () => {
             mt="2px"
             mb="5px"
             w="100%"
-            onClick={() => setIsReg(false)}
+            onClick={() => dispatch(regStatus()) }
           >
             New user ? SignUp for free
           </Button>
         </Box>
-      ) : (
+      {/* ) : (
         <SignUp />
-      )}
+      )} */}
     </>
   );
 };

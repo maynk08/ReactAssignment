@@ -4,7 +4,23 @@ import {
   Image
 } from "@chakra-ui/react";
 import Login from '../Components/Login'
+import { useSelector} from 'react-redux/es/exports';
+
+import SignUp from '../Components/SignUp';
+
+interface actionTypes {
+  regReducer : boolean
+}
+
+
+
 const LoginPage = () => {
+  let loginState = useSelector((state:actionTypes)=>{
+    console.log(state.regReducer)
+    return state.regReducer
+  })
+  
+  
   return (
   <>
   <Box 
@@ -15,12 +31,12 @@ const LoginPage = () => {
       p="10px"
       borderRadius="50px"
       ml = '150px'
-       mt = '30px'
+       mt = '60px'
        h= '40em'
     >
       
-     {/* <SignUp/> */}
-     <Login/>
+     {loginState?<Login/> : <SignUp/>}
+     
       <Image src='https://png.pngtree.com/png-clipart/20221004/original/pngtree-family-shopping-isolated-cartoon-vector-illustration-png-image_8654524.png' ml='60px'/>
      
     </Box>

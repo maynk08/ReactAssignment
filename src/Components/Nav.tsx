@@ -1,8 +1,10 @@
 import React from "react";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { Button, ButtonGroup } from "@chakra-ui/react";
-
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Nav = () => {
+  const navigate = useNavigate()
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,9 +35,9 @@ const Nav = () => {
           </form>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/home">
                 Home <span className="sr-only">(current)</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item active">
               <a className="nav-link" href="#">
@@ -43,9 +45,9 @@ const Nav = () => {
               </a>
             </li>
             <li className="nav-item active mr-5">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 Products
-              </a>
+              </Link>
             </li>
           </ul>
 
@@ -54,6 +56,7 @@ const Nav = () => {
               leftIcon={<FaShoppingCart size={20} />}
               variant="link"
               colorScheme="black"
+              onClick={()=>navigate('/cart')}
             >
               Cart
             </Button>
