@@ -1,7 +1,7 @@
 import ProductCard from "./Components/ProductCard";
 import { useEffect, useState } from "react";
 import "./App.css";
-import Homepage from "./Components/Homepage";
+import Homepage from "./Pages/Homepage";
 import LoginPage from "./Pages/LoginPage";
 import CartPage from "./Pages/CartPage";
 import ProductPage from "./Pages/ProductPage";

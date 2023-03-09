@@ -13,9 +13,9 @@ import {
 import { useToast } from '@chakra-ui/react'
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
-import { useSelector,useDispatch } from 'react-redux/es/exports';
-import { setCart , regStatus } from "../Redux/actions/actions";
-import { useState,useEffect } from "react";
+import { useDispatch } from 'react-redux/es/exports';
+import { regStatus } from "../Redux/actions/actions";
+
 
 
 type formData = {

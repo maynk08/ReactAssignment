@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { item } from "../Redux/actions/actions";
-import Products from "./ProductCard";
+import Products from "../Components/ProductCard";
 import axios from "axios";
 import { Flex } from "@chakra-ui/react";
 import Nav from "../Components/Nav";
